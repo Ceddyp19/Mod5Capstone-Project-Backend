@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2020_10_08_150821) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "destinations", force: :cascade do |t|
     t.string "name"
     t.string "longitude"
@@ -21,8 +24,8 @@ ActiveRecord::Schema.define(version: 2020_10_08_150821) do
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "destination_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "destination_id", null: false
     t.boolean "isFavorite"
     t.boolean "wantToGo"
     t.datetime "created_at", precision: 6, null: false
