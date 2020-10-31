@@ -10,41 +10,57 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_08_150821) do
+ActiveRecord::Schema.define(version: 2020_10_31_054153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "collages", force: :cascade do |t|
+    t.string "pics"
+    t.string "story"
+    t.string "date"
+    t.integer "visited_destination_id"
+  end
+
   create_table "destinations", force: :cascade do |t|
     t.string "name"
-    t.string "longitude"
-    t.string "latitude"
+    t.string "lng"
+    t.string "lat"
+    t.string "image"
+    t.string "addr"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "favorites", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "destination_id", null: false
+  create_table "my_pins", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "destination_id"
     t.boolean "isFavorite"
-    t.boolean "wantToGo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["destination_id"], name: "index_favorites_on_destination_id"
-    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "user_destinations", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "destination_id"
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "username"
     t.string "name"
+    t.string "password_digest"
     t.string "email"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "image"
-    t.string "uid"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "favorites", "destinations"
-  add_foreign_key "favorites", "users"
+  create_table "visited_destinations", force: :cascade do |t|
+    t.integer "destination_id"
+  end
+
+  create_table "visiteds", force: :cascade do |t|
+    t.integer "destination_id"
+    t.integer "user_id"
+    t.string "picture_url"
+    t.string "description"
+  end
+
 end
