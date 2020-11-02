@@ -3,6 +3,7 @@ class CreateUserDestinations < ActiveRecord::Migration[6.0]
     create_table :user_destinations do |t|
       t.integer :user_id
       t.integer :destination_id
+      t.string  :listCategory
     end
   end
 end

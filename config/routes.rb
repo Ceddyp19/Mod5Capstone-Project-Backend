@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :destinations, only: [:index, :show, :create]
   # resources :users
   resources :user_destinations
+  resources :collages
  
   namespace :api do
     namespace :v1 do

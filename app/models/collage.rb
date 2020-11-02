@@ -1,5 +1,5 @@
 class Collage < ApplicationRecord
-   belongs_to :visited_destination 
+   belongs_to :user_destination 
    
 end
 

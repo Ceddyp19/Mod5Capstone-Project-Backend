@@ -15,9 +15,17 @@ class UserDestinationsController < ApplicationController
          id = @destination.id
       
         puts (@destination.id)
-        @user_destination = UserDestination.create(destination_id: id, user_id: decoded_token[0]['user_id'])
+        @user_destination = UserDestination.find_or_create_by(destination_id: id, user_id: decoded_token[0]['user_id'])
         # @user_destination = UserDestination.create(destination_id: params[:destination_id], user_id: decoded_token[0]['user_id'])
         render json: @user_destination
+    end
+
+    def update 
+        @destination = Destination.find_by(addr: params[:addr])
+        id = @destination.id
+
+        @user_destination = UserDestination.find_by(destination_id: id, user_id: decoded_token[0]['user_id'])
+        @user_destination.update(listCategory: params[:listCategory])
     end
 
     def destroy

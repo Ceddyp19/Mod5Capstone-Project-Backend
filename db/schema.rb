@@ -16,10 +16,10 @@ ActiveRecord::Schema.define(version: 2020_10_31_054153) do
   enable_extension "plpgsql"
 
   create_table "collages", force: :cascade do |t|
-    t.string "pics"
+    t.string "photos"
     t.string "story"
     t.string "date"
-    t.integer "visited_destination_id"
+    t.integer "user_destination_id"
   end
 
   create_table "destinations", force: :cascade do |t|
@@ -32,17 +32,10 @@ ActiveRecord::Schema.define(version: 2020_10_31_054153) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "my_pins", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "destination_id"
-    t.boolean "isFavorite"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "user_destinations", force: :cascade do |t|
     t.integer "user_id"
     t.integer "destination_id"
+    t.string "listCategory"
   end
 
   create_table "users", force: :cascade do |t|
