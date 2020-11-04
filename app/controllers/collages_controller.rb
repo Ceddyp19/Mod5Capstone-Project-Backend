@@ -18,4 +18,17 @@ class CollagesController < ApplicationController
       user_destination_id: params["user_destination_id"],
     )
   end
+
+  def update
+    @collage = Collage.find(params[:id])
+
+    @collage.update(story: params[:story])
+  end
+
+  
+  def destroy
+    @collage = Collage.find( params[:id])
+    @collage.destroy
+end
+
 end
