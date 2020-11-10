@@ -4,6 +4,7 @@ This README would normally document whatever steps are necessary to get the
 application up and running.
 
 Things you may want to cover:
+*Run `rails s` to start server
 
 * Ruby version
 
